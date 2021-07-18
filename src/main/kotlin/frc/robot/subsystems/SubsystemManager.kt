@@ -1,13 +1,13 @@
 package frc.robot.subsystems
 
 class SubsystemManager {
-    private val listeners: Collection<Subsystem> = ArrayList()
+    private val subsystems: Collection<Subsystem> = ArrayList()
 
-    fun addSubsystem(listener: Subsystem) {
-        listeners + listener
+    fun addSubsystem(subsystem: Subsystem) {
+        subsystems + subsystem
     }
 
-    private fun notifySubsystems(state: RobotState) = listeners.forEach { it.notifyRobotState(state) }
+    private fun notifySubsystems(state: RobotState) = subsystems.forEach { it.notifyRobotState(state) }
 
 
     // TODO: implement function
@@ -22,5 +22,5 @@ class SubsystemManager {
         notifySubsystems(processedState)
     }
 
-    fun reset() = listeners.forEach { it.reset() }
+    fun reset() = subsystems.forEach { it.reset() }
 }
