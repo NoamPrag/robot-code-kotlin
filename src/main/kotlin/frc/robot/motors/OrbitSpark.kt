@@ -20,7 +20,7 @@ class OrbitSpark(data: MotorData) : OrbitMotor, CANSparkMax(data.port, MotorType
     }
 
 
-    override fun setOutput(controlMode: MotorControlMode, value: Double) {
+    override fun setOutput(controlMode: MotorControlMode, value: Float) {
         TODO("Not yet implemented")
     }
 }

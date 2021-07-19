@@ -20,7 +20,7 @@ class OrbitTalon(data: MotorData) : OrbitMotor, TalonSRX(data.port) {
     }
 
 
-    override fun setOutput(controlMode: MotorControlMode, value: Double) {
+    override fun setOutput(controlMode: MotorControlMode, value: Float) {
         TODO("Not yet implemented")
     }
 }
