@@ -3,6 +3,7 @@ package frc.robot
 import edu.wpi.first.wpilibj.TimedRobot
 
 import frc.robot.subsystems.SubsystemManager
+import frc.robot.subsystems.conveyor.Conveyor
 import frc.robot.subsystems.intake.Intake
 
 class Robot : TimedRobot() {
@@ -10,9 +11,9 @@ class Robot : TimedRobot() {
 
     override fun robotInit() {
         subsystemManager.addSubsystem(Intake)
+        subsystemManager.addSubsystem(Conveyor)
 
         subsystemManager.reset()
-
     }
 
     override fun robotPeriodic() {}
