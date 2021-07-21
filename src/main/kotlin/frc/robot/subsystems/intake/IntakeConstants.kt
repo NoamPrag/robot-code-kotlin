@@ -20,3 +20,5 @@ internal val motor = OrbitMotorFactory.falcon(
 private const val pistonForwardChannel: Int = 0
 private const val pistonReverseChannel: Int = 1
 internal val piston = DoubleSolenoid(pistonForwardChannel, pistonReverseChannel)
+
+internal const val timeToStartWheels: Float = 0.4f

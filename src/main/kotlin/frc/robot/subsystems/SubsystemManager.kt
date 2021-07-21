@@ -1,26 +1,13 @@
 package frc.robot.subsystems
 
 class SubsystemManager {
-    private val subsystems: Collection<Subsystem> = ArrayList()
+    private val subsystems: Collection<StatefulRobotComponent<*>> = ArrayList()
 
-    fun addSubsystem(subsystem: Subsystem) {
+    fun addSubsystem(subsystem: StatefulRobotComponent<*>) {
         subsystems + subsystem
     }
 
-    private fun notifySubsystems(state: RobotState) = subsystems.forEach { it.notifyRobotState(state) }
-
-
-    // TODO: implement function
-    private fun processState(state: RobotState): RobotState = when (state) {
-        RobotState.TRAVEL -> RobotState.TRAVEL
-        else -> RobotState.TRAVEL
-    }
-
-
-    fun updateState(newState: RobotState) {
-        val processedState = processState(newState)
-        notifySubsystems(processedState)
-    }
+    fun notifySubsystems(robotState: RobotState) = subsystems.forEach { it.periodic(robotState) }
 
     fun reset() = subsystems.forEach { it.reset() }
 }
