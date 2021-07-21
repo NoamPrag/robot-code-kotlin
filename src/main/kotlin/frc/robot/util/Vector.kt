@@ -17,13 +17,15 @@ class Vector(val x: Float, val y: Float) {
         fun min(v1: Vector, v2: Vector): Vector = Vector(min(v1.x, v2.x), min(v1.y, v2.y))
 
         fun angleDifference(v1: Vector, v2: Vector): Float =
-            if (v1.norm == 0f || v2.norm == 0f) 0f
+            if (v1.isZero || v2.isZero) 0f
             else acos((v1 dot v2) / (v1.norm * v2.norm))
     }
 
     val norm: Float by lazy { sqrt(x * x + y * y) }
 
-    val angle: Float by lazy { if (x == 0f && y == 0f) 0f else atan2(y, x) }
+    val angle: Float by lazy { if (isZero) 0f else atan2(y, x) }
+
+    val isZero: Boolean by lazy { x == 0f && y == 0f }
 
     fun rotate(angle: Float): Vector {
         val sinAngle = sin(angle)
@@ -43,7 +45,7 @@ class Vector(val x: Float, val y: Float) {
 
     fun project(angle: Float): Float = this dot unit(angle)
 
-    fun project(other: Vector): Float = if (other.norm != 0f) (this dot other) / other.norm else norm
+    fun project(other: Vector): Float = if (!other.isZero) (this dot other) / other.norm else norm
 
     operator fun plus(other: Vector): Vector = Vector(x + other.x, y + other.y)
 
