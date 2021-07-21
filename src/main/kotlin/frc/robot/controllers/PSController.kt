@@ -63,4 +63,32 @@ class PSController(port: Int) {
 
     val rightTrigger = Axis(joystick, rightTriggerIndex)
     val leftTrigger = Axis(joystick, leftTriggerIndex)
+
+
+    fun listen() {
+        squareButton.listen()
+        xButton.listen()
+        circleButton.listen()
+        triangleButton.listen()
+
+        l1Button.listen()
+        r1Button.listen()
+
+        l2Button.listen()
+        r2Button.listen()
+
+        l3Button.listen()
+        r3Button.listen()
+
+        shareButton.listen()
+        optionsButton.listen()
+        psButton.listen()
+        touchPadButton.listen()
+
+        leftStick.listen()
+        rightStick.listen()
+
+        rightTrigger.listen()
+        leftTrigger.listen()
+    }
 }

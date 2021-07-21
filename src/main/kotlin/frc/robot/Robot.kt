@@ -1,6 +1,7 @@
 package frc.robot
 
 import edu.wpi.first.wpilibj.TimedRobot
+import frc.robot.controllers.PSController
 import frc.robot.subsystems.RobotState
 import frc.robot.subsystems.SubsystemManager
 import frc.robot.subsystems.conveyor.Conveyor
@@ -8,6 +9,7 @@ import frc.robot.subsystems.intake.Intake
 
 class Robot : TimedRobot() {
     private val subsystemManager = SubsystemManager()
+    private val driverJoystick = PSController(1)
 
     override fun robotInit() {
         // Adding subsystems to manager and applying reset
@@ -15,6 +17,9 @@ class Robot : TimedRobot() {
         subsystemManager.addSubsystem(Conveyor)
 
         subsystemManager.reset()
+
+        driverJoystick.circleButton.addPressListener { subsystemManager.notifySubsystems(RobotState.TRAVEL) }
+        driverJoystick.xButton.addPressListener { subsystemManager.notifySubsystems(RobotState.INTAKE) }
     }
 
     override fun robotPeriodic() {}
@@ -26,8 +31,7 @@ class Robot : TimedRobot() {
     override fun teleopInit() {}
 
     override fun teleopPeriodic() {
-        // An example of notifying subsystems
-        subsystemManager.notifySubsystems(RobotState.TRAVEL)
+        driverJoystick.listen()
     }
 
     override fun disabledInit() {}
