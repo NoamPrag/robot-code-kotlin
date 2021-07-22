@@ -1,13 +1,25 @@
 package frc.robot.controllers
 
 import edu.wpi.first.wpilibj.Joystick
+import kotlin.math.abs
+
+typealias AxisListener = (Float) -> Unit
 
 class Axis(private val joystick: Joystick, private val index: Int) {
-    fun get() = joystick.getRawAxis(index).toFloat()
+    var deadband: Float = 0f
+    var interpolation: (Float) -> Float = { it }
 
-    private val listeners: Collection<(Float) -> Unit> = ArrayList()
+    fun getRaw(): Float = joystick.getRawAxis(index).toFloat()
 
-    fun addListener(listener: (Float) -> Unit) {
+    fun get(): Float {
+        val rawValue = joystick.getRawAxis(index).toFloat()
+
+        return if (abs(rawValue) >= deadband) interpolation(rawValue) else 0f
+    }
+
+    private val listeners: Collection<AxisListener> = ArrayList()
+
+    fun addListener(listener: AxisListener) {
         listeners + listener
     }
 
