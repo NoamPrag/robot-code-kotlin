@@ -2,7 +2,7 @@ package frc.robot.util
 
 import kotlin.math.*
 
-class Vector(val x: Float, val y: Float) {
+data class Vector(val x: Float, val y: Float) {
 
     companion object {
         val zero = Vector(0f, 0f)
