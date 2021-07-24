@@ -55,9 +55,5 @@ data class Vector(val x: Float, val y: Float) {
 
     operator fun div(factor: Float): Vector = Vector(x / factor, y / factor)
 
-    override operator fun equals(other: Any?): Boolean = other is Vector && x == other.x && y == other.y
-
     operator fun compareTo(other: Vector): Int = norm.compareTo(other.norm)
-
-    override fun toString(): String = "($x, $y)"
 }
