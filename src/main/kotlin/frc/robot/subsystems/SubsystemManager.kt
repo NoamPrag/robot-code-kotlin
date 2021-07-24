@@ -1,7 +1,7 @@
 package frc.robot.subsystems
 
 class SubsystemManager {
-    private val subsystems: Collection<StatefulRobotComponent<*>> = ArrayList()
+    private val subsystems: Collection<StatefulRobotComponent<*>> = mutableListOf()
 
     fun addSubsystem(subsystem: StatefulRobotComponent<*>) {
         subsystems + subsystem
