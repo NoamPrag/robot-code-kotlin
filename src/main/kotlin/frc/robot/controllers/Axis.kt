@@ -17,7 +17,7 @@ class Axis(private val joystick: Joystick, private val index: Int) {
         return if (abs(rawValue) >= deadband) interpolation(rawValue) else 0f
     }
 
-    private val listeners: Collection<AxisListener> = ArrayList()
+    private val listeners: Collection<AxisListener> = mutableListOf()
 
     fun addListener(listener: AxisListener) {
         listeners + listener

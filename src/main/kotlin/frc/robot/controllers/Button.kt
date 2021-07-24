@@ -5,13 +5,18 @@ import edu.wpi.first.wpilibj.Joystick
 typealias ButtonListener = () -> Unit
 
 class Button(private val joystick: Joystick, private val index: Int) {
-    fun getRaw(): Boolean = joystick.getRawButton(index)
-    fun getPressed(): Boolean = joystick.getRawButtonPressed(index)
-    fun getReleased(): Boolean = joystick.getRawButtonReleased(index)
 
-    private val pressListeners: Collection<ButtonListener> = ArrayList()
-    private val releaseListeners: Collection<ButtonListener> = ArrayList()
-    private val rawListeners: Collection<ButtonListener> = ArrayList()
+    val raw: Boolean get() = joystick.getRawButton(index)
+    val pressed: Boolean get() = joystick.getRawButtonPressed(index)
+    val released: Boolean get() = joystick.getRawButtonReleased(index)
+
+    private val rawListeners: Collection<ButtonListener> = mutableListOf()
+    private val pressListeners: Collection<ButtonListener> = mutableListOf()
+    private val releaseListeners: Collection<ButtonListener> = mutableListOf()
+
+    fun addRawListener(listener: ButtonListener) {
+        rawListeners + listener
+    }
 
     fun addPressListener(listener: ButtonListener) {
         pressListeners + listener
@@ -21,15 +26,11 @@ class Button(private val joystick: Joystick, private val index: Int) {
         releaseListeners + listener
     }
 
-    fun addRawListener(listener: ButtonListener) {
-        rawListeners + listener
-    }
-
     fun listen() {
-        if (getPressed()) pressListeners.forEach { it() }
+        if (raw) rawListeners.forEach { it() }
 
-        if (getReleased()) releaseListeners.forEach { it() }
+        if (pressed) pressListeners.forEach { it() }
 
-        if (getRaw()) rawListeners.forEach { it() }
+        if (released) releaseListeners.forEach { it() }
     }
 }
