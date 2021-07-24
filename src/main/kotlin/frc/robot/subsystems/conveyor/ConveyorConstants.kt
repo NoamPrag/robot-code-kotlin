@@ -4,10 +4,9 @@ import frc.robot.motors.MotorData
 import frc.robot.motors.OrbitMotorFactory
 
 
-// TODO: get real values
 internal val motor = OrbitMotorFactory.falcon(
     MotorData(
-        port = 0,
+        port = TODO("Get real value"),
         invertMotor = false,
         invertSensor = false,
         motorPerPhysicalUnitsRatio = 1f

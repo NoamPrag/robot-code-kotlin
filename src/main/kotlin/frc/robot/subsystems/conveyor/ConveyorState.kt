@@ -16,16 +16,13 @@ object Static : ConveyorState() {
 }
 
 object Serialize : ConveyorState() {
-    // TODO: implement
-    override fun getMotorVelocity() = defaultSpeed
+    override fun getMotorVelocity() = TODO("Implement")
 }
 
 object Shoot : ConveyorState() {
-    // TODO: implement
-    override fun getMotorVelocity() = defaultSpeed
+    override fun getMotorVelocity() = TODO("Implement")
 }
 
 object Climb : ConveyorState() {
-    // TODO: implement
-    override fun getMotorVelocity() = defaultSpeed
+    override fun getMotorVelocity() = TODO("Implement")
 }

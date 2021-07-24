@@ -8,17 +8,13 @@ internal const val defaultSpeed: Float = 1f
 
 internal val motor = OrbitMotorFactory.falcon(
     MotorData(
-        port = 1,
+        port = TODO("Get real value"),
         invertMotor = false,
         invertSensor = false,
         motorPerPhysicalUnitsRatio = 1f,
     )
 )
 
-
-// TODO: check real values
-private const val pistonForwardChannel: Int = 0
-private const val pistonReverseChannel: Int = 1
-internal val piston = DoubleSolenoid(pistonForwardChannel, pistonReverseChannel)
+internal val piston = DoubleSolenoid(TODO("Get real value"), TODO("Get real value"))
 
 internal const val timeToStartWheels: Float = 0.4f
